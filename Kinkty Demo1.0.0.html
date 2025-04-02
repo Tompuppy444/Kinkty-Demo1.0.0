@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinkty Demo 1.0.0</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: black; color: white; }
+        .hidden { display: none; }
+        .section { margin-bottom: 20px; }
+        label { display: block; margin: 5px 0; }
+        input, button { background-color: #333; color: white; border: 1px solid white; padding: 5px; }
+        button { cursor: pointer; }
+        .rejected { color: red; }
+        .rejected-item { background-color: red; padding: 5px; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Kinkty Demo 1.0.0</h1>
+    
+    <!-- 新增的頁面1 -->
+    <div id="pageIntro" class="section">
+        <p>請交由主動方填答</p>
+        <button onclick="confirmIntro()">確定</button>
+    </div>
+    
+    <div id="page1" class="section hidden">
+        <h2>主動方填答</h2>
+        <p>請選擇您想實踐或新增的 BDSM 項目。</p>
+        <div id="options"></div>
+        <button onclick="confirmSelection()">確認選擇</button>
+        <input type="text" id="newItem" placeholder="新增項目">
+        <button onclick="addItem()">新增</button>
+    </div>
+    
+    <div id="activeLimits" class="section hidden">
+        <h2>主動方硬底線</h2>
+        <p>請輸入您的硬底線：</p>
+        <input type="text" id="activeHardLimit">
+        <button onclick="confirmActiveHardLimit()">確認</button>
+    </div>
+    
+    <!-- 新增的頁面2 -->
+    <div id="page2Intro" class="section hidden">
+        <p>請交由被動方填答</p>
+        <button onclick="confirmPage2Intro()">確定</button>
+    </div>
+    
+    <div id="page2" class="section hidden">
+        <h2>被動方填答</h2>
+        <p>請選擇各項目的允許程度（0-5）。</p>
+        <div id="allowance"></div>
+        <button onclick="confirmAllowance()">確認</button>
+    </div>
+    
+    <div id="passiveLimits" class="section hidden">
+        <h2>被動方硬底線</h2>
+        <p>請輸入您的硬底線：</p>
+        <input type="text" id="passiveHardLimit">
+        <button onclick="confirmPassiveHardLimit()">確認</button>
+    </div>
+    
+    <!-- 新增的頁面3 -->
+    <div id="page3" class="section hidden">
+        <h2>最終結果</h2>
+        <p id="finalResult"></p>
+        <h3 class="rejected hidden">以下是被拒絕的項目，絕對禁止實踐(硬底線)</h3>
+        <div id="rejectedItems"></div>
+    </div>
+    
+    <script>
+        let items = ["SP屁股", "SP大腿", "TK", "碰觸胸部", "碰觸屁股", "脫上衣至赤裸", "脫內褲至赤裸", "巴掌"];
+        let selectedItems = new Set();
+        let activeHardLimit = "";
+        let passiveHardLimit = "";
+        let allowanceLevels = {};
+        const descriptions = ["絕對禁止(硬底線)", "不喜歡但可接受(軟底線)", "不太喜歡但可接受", "沒特別感覺", "很喜歡", "超級喜歡"];
+
+        function addItem() {
+            let newItem = document.getElementById("newItem").value;
+            if (newItem) {
+                items.push(newItem);
+                document.getElementById("newItem").value = "";
+                renderOptions();
+            }
+        }
+
+        function renderOptions() {
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            items.forEach(item => {
+                let label = document.createElement("label");
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.value = item;
+                if (selectedItems.has(item)) checkbox.checked = true;
+                checkbox.onchange = function() {
+                    if (this.checked) selectedItems.add(this.value);
+                    else selectedItems.delete(this.value);
+                };
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(` ${item}`));
+                optionsDiv.appendChild(label);
+            });
+        }
+
+        function confirmIntro() {
+            document.getElementById("pageIntro").classList.add("hidden");
+            document.getElementById("page1").classList.remove("hidden");
+        }
+
+        function confirmSelection() {
+            if (selectedItems.size === 0) {
+                alert("請選擇至少一項。");
+                return;
+            }
+            document.getElementById("page1").classList.add("hidden");
+            document.getElementById("activeLimits").classList.remove("hidden");
+        }
+
+        function confirmActiveHardLimit() {
+            activeHardLimit = document.getElementById("activeHardLimit").value;
+            document.getElementById("activeLimits").classList.add("hidden");
+            document.getElementById("page2Intro").classList.remove("hidden");
+        }
+
+        function confirmPage2Intro() {
+            document.getElementById("page2Intro").classList.add("hidden");
+            document.getElementById("page2").classList.remove("hidden");
+            renderAllowance();
+        }
+
+        function renderAllowance() {
+            let allowanceDiv = document.getElementById("allowance");
+            allowanceDiv.innerHTML = "";
+            selectedItems.forEach(item => {
+                let label = document.createElement("label");
+                label.innerHTML = `${item}: <input type='range' min='0' max='5' value='3' step='1' data-item='${item}' oninput='updateSliderValue(this)'> <span>${descriptions[3]}</span>`;
+                allowanceDiv.appendChild(label);
+            });
+        }
+
+        function updateSliderValue(slider) {
+            slider.nextElementSibling.textContent = descriptions[slider.value];
+        }
+
+        function confirmAllowance() {
+            document.querySelectorAll("#allowance input").forEach(input => {
+                allowanceLevels[input.dataset.item] = input.value;
+            });
+            document.getElementById("page2").classList.add("hidden");
+            document.getElementById("passiveLimits").classList.remove("hidden");
+        }
+
+        function confirmPassiveHardLimit() {
+            passiveHardLimit = document.getElementById("passiveHardLimit").value;
+            document.getElementById("passiveLimits").classList.add("hidden");
+            document.getElementById("page3").classList.remove("hidden");
+            showFinalResult();
+        }
+
+        function showFinalResult() {
+            let resultText = `主動方的硬底線：${activeHardLimit}\n\n被動方的硬底線：${passiveHardLimit}\n\n允許程度：\n`;
+            let rejectedItemsHtml = "";
+            let hasRejectedItems = false;  // 用來檢查是否有被拒絕的項目
+
+            for (let item in allowanceLevels) {
+                if (allowanceLevels[item] == "0") {
+                    // 將絕對禁止的項目變成紅色，並加上「絕對禁止」字樣
+                    rejectedItemsHtml += `<div class="rejected-item">${item} - 絕對禁止</div>`;
+                    hasRejectedItems = true;  // 有被拒絕的項目
+                } else {
+                    resultText += `${item}: ${allowanceLevels[item]} (${descriptions[allowanceLevels[item]]})\n`;
+                }
+            }
+
+            document.getElementById("finalResult").innerText = resultText;
+
+            // 如果有被拒絕的項目，顯示「被拒絕的項目，絕對禁止施行」，否則隱藏
+            if (hasRejectedItems) {
+                document.querySelector(".rejected").classList.remove("hidden");
+                document.getElementById("rejectedItems").innerHTML = rejectedItemsHtml;
+            } else {
+                document.querySelector(".rejected").classList.add("hidden");
+                document.getElementById("rejectedItems").innerHTML = "";
+            }
+        }
+
+        renderOptions();
+    </script>
+</body>
+</html>
