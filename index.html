@@ -38,18 +38,21 @@
         }
         .slider-container {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: nowrap;
+            flex-direction: column;
+            gap: 0.5rem;
             margin-bottom: 1rem;
+            word-break: break-word;
+        }
+        .slider-container label {
+            font-weight: bold;
+            margin-bottom: 0;
         }
         .slider-container input[type="range"] {
-            flex: 1;
-            margin: 0 1rem;
-            min-width: 200px;
+            width: 100%;
         }
         .slider-container span {
-            white-space: nowrap;
+            display: inline-block;
+            color: #ccc;
         }
     </style>
 </head>
