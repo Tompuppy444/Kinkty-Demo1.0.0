@@ -1,272 +1,454 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinkty Demo 1.0.0</title>
-    <!-- 引入 Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 引入 Google 字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-        }
-        .card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-        .btn-primary {
-            background-color: #6f42c1;
-            border-color: #6f42c1;
-        }
-        .progress {
-            height: 20px;
-        }
-        .rejected-item {
-            background-color: #c82333;
-            padding: 5px;
-            margin: 5px 0;
-            border-radius: 4px;
-        }
-        .form-check-label, .form-label {
-            color: #ffffff;
-        }
-        .slider-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            word-break: break-word;
-        }
-        .slider-container label {
-            font-weight: bold;
-            margin-bottom: 0;
-        }
-        .slider-container input[type="range"] {
-            width: 100%;
-        }
-        .slider-container span {
-            display: inline-block;
-            color: #ccc;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinkty Demo 1.0.0</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <style>
+    body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        margin-bottom: 20px;
+        color: #ffffff;
+    }
+    .btn-primary {
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+    .progress {
+        height: 20px;
+    }
+    .rejected-item {
+        background-color: #c82333;
+        padding: 5px;
+        margin: 5px 0;
+        border-radius: 4px;
+    }
+    .form-check-label, .form-label {
+        color: #ffffff;
+    }
+    .slider-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        word-break: break-word;
+    }
+    .slider-container label {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    .slider-container input[type="range"] {
+        width: 100%;
+    }
+    .slider-container span {
+        display: inline-block;
+        font-weight: bold;
+        margin-top: 5px;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+    .level-0 { color: #fff; background-color: #dc3545; }
+    .level-1 { color: #fff; background-color: #e04b10; }
+    .level-2 { color: #000; background-color: #ffc107; }
+    .level-3 { color: #fff; background-color: #6c757d; }
+    .level-4 { color: #fff; background-color: #28a745; }
+    .level-5 { color: #fff; background-color: #791196; }
+
+    .result-item {
+      padding: 8px 12px;
+      margin: 5px 0;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .selected-button {
+      background-color: #6f42c1 !important;
+      color: #fff !important;
+    }
+  </style>
 </head>
 <body>
-<div class="container py-4">
+  <div class="container py-4">
     <h1 class="mb-4 text-center">Kinkty Demo 1.0.0</h1>
-
     <div class="progress mb-4">
-        <div id="progressBar" class="progress-bar" style="width: 10%;">步驟 1 / 6</div>
+      <div id="progressBar" class="progress-bar" style="width: 10%;">步驟 1 / 8</div>
     </div>
 
-    <div id="pageIntro" class="card p-4">
-        <p>請交由主動方填答</p>
-        <button class="btn btn-primary" onclick="confirmIntro()">確定</button>
+    <div id="page0" class="card p-4">
+      <h2>歡迎使用 Kinkty！</h2>
+      <p>這是作為BDSM實踐前溝通工具的網頁，如果你覺得有些慾望不好說出口，或是口頭拒絕對你來說有些壓力，希望Kinkty能協助你溝通更順暢！</p>
+      <ul>
+        <p>🟪請按照步驟填寫，並按指示將手機(裝置)交給您的互動對象填寫。<p>
+        <p>🟪本網頁將協助雙方確認期待實踐的項目、預備實踐項目的喜好程度，以及絕對禁止實踐的硬底線，理解彼此的慾望和禁忌</li>
+        <p>🚫本網站含有成人內容，未滿18歲請勿造訪<p>
+        <p>⚠️Kinkty「不會儲存」您填寫的資料，請善用手機截圖保存溝通結果，網頁重整將全部清除<p>
+      </ul>
+      <p>BDSM實踐與性行為前/進行中，請遵守知情同意等基本原則確認雙方合意狀態。</p>
+      <p>有關Kinkty任何問題或使用建議，歡迎聯絡X.com/@Tom_puppy444</p>
+      <button class="btn btn-primary" onclick="goToSafetyCheck()">我已滿18歲，同意使用規範</button>
     </div>
 
     <div id="page1" class="card p-4 d-none">
-        <h2>主動方填答</h2>
-        <p>請選擇您想實踐或新增的 BDSM 項目：</p>
-        <div id="options"></div>
-        <div class="input-group mt-3">
-            <input type="text" class="form-control" id="newItem" placeholder="新增項目">
-            <button class="btn btn-outline-light" onclick="addItem()">新增</button>
-        </div>
-        <button class="btn btn-primary mt-3" onclick="confirmSelection()">確認選擇</button>
-    </div>
-
-    <div id="activeLimits" class="card p-4 d-none">
-        <h2>主動方硬底線</h2>
-        <p>請輸入您的硬底線：</p>
-        <input type="text" class="form-control" id="activeHardLimit">
-        <button class="btn btn-primary mt-3" onclick="confirmActiveHardLimit()">確認</button>
-    </div>
-
-    <div id="page2Intro" class="card p-4 d-none">
-        <p>請交由被動方填答</p>
-        <button class="btn btn-primary" onclick="confirmPage2Intro()">確定</button>
+      <h2>雙方已經約定，並且明確知道安全詞嗎？</h2>
+      <p>包括無法進行言語表達時的肢體安全詞</p>
+      <div class="d-flex gap-2 mb-3">
+        <button class="btn btn-outline-light flex-fill" id="btnActiveConfirmed" onclick="toggleSafetyConfirm('active')">主動方已確認</button>
+        <button class="btn btn-outline-light flex-fill" id="btnPassiveConfirmed" onclick="toggleSafetyConfirm('passive')">被動方已確認</button>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-primary" id="btnSafetyNext" onclick="confirmSafetyCheck()" disabled>下一步</button>
+      </div>
     </div>
 
     <div id="page2" class="card p-4 d-none">
-        <h2>被動方填答</h2>
-        <p>請選擇各項目的允許程度（0-5）：</p>
-        <div id="allowance"></div>
-        <button class="btn btn-primary mt-3" onclick="confirmAllowance()">確認</button>
-    </div>
-
-    <div id="passiveLimits" class="card p-4 d-none">
-        <h2>被動方硬底線</h2>
-        <p>請輸入您的硬底線：</p>
-        <input type="text" class="form-control" id="passiveHardLimit">
-        <button class="btn btn-primary mt-3" onclick="confirmPassiveHardLimit()">確認</button>
+      <h2>請交由主動方填答</h2>
+      <button class="btn btn-primary" onclick="confirmIntro()">確定</button>
     </div>
 
     <div id="page3" class="card p-4 d-none">
-        <h2>最終結果</h2>
-        <pre id="finalResult" class="text-white"></pre>
-        <h4 id="rejectedTitle" class="text-danger d-none">以下是被拒絕的項目，絕對禁止實踐：</h4>
-        <div id="rejectedItems"></div>
+      <h2>主動方填答</h2>
+      <p>請選擇您想實踐或新增的 BDSM 項目：</p>
+      <div id="options"></div>
+      <div class="input-group mt-3">
+        <input type="text" class="form-control" id="newItem" placeholder="新增項目" />
+        <button class="btn btn-outline-light" onclick="addItem()">新增</button>
+      </div>
+      <button class="btn btn-primary mt-3" onclick="confirmSelection()">確認選擇</button>
     </div>
-</div>
 
-<script>
+    <div id="page4" class="card p-4 d-none">
+      <h2>主動方禁忌(硬底線)</h2>
+      <p>請輸入您的禁忌(硬底線)：</p>
+      <input type="text" class="form-control" id="activeHardLimit" />
+      <button class="btn btn-primary mt-3" onclick="confirmActiveHardLimit()">確認</button>
+    </div>
+
+    <div id="page5" class="card p-4 d-none">
+      <h2>請交由被動方填答</h2>
+      <button class="btn btn-primary" onclick="confirmPage2Intro()">確定</button>
+    </div>
+
+    <div id="page6" class="card p-4 d-none">
+      <h2>被動方填答</h2>
+      <p>請選擇各項目的允許程度（0-5）：</p>
+      <div id="allowance"></div>
+      <button class="btn btn-primary mt-3" onclick="confirmAllowance()">確認</button>
+    </div>
+
+    <div id="page7" class="card p-4 d-none">
+      <h2>被動方禁忌(硬底線)</h2>
+      <p>請輸入您的禁忌(硬底線)：</p>
+      <input type="text" class="form-control" id="passiveHardLimit" />
+      <button class="btn btn-primary mt-3" onclick="confirmPassiveHardLimit()">確認</button>
+    </div>
+
+    <div id="page7_5" class="card p-4 d-none">
+      <h2>被動方許願池</h2>
+      <p>請選擇/填寫期待主動方可以實踐的項目/自己想對主動方做的項目/其他實踐備註</p>
+      <div id="expectationOptions"></div>
+      <div class="input-group mt-3">
+        <input type="text" class="form-control" id="newExpectationItem" placeholder="新增期待項目" />
+        <button class="btn btn-outline-light" onclick="addExpectationItem()">新增</button>
+      </div>
+      <div class="mt-3">
+        <h5>已選擇的項目：</h5>
+        <div id="selectedExpectations" class="text-info"></div>
+      </div>
+      <button class="btn btn-primary mt-3" onclick="confirmPassiveExpectation()">確認</button>
+    </div>
+
+    <div id="page8" class="card p-4 d-none">
+      <h2>最終結果</h2>
+      <pre id="finalResult" class="text-white" style="font-family: 'Noto Sans TC', sans-serif; font-size: 1.1em; white-space: pre-wrap;"></pre>
+      <h4 id="rejectedTitle" class="text-danger d-none">以下是被拒絕的項目，絕對禁止實踐：</h4>
+      <div id="rejectedItems"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    let totalSteps = 9;
+    let safetyConfirm = { active: false, passive: false };
     let items = ["SP屁股", "SP大腿", "TK", "碰觸胸部", "碰觸屁股", "脫上衣至赤裸", "脫內褲至赤裸", "巴掌"];
     let selectedItems = new Set();
     let activeHardLimit = "";
     let passiveHardLimit = "";
+    let passiveExpectation = "";
+    let expectationItems = ["想當Brat","想咬人","想被咬","脆皮SP輕一點","喜歡溫柔tk"];
+    let selectedExpectations = new Set();
     let allowanceLevels = {};
-    const descriptions = ["絕對禁止(硬底線)", "不喜歡但可接受(軟底線)", "不太喜歡但可接受", "沒特別感覺", "很喜歡", "超級喜歡"];
+    const descriptions = ["絕對禁止(硬底線)", "不喜歡但勉強接受(軟底線)", "不太喜歡但可接受", "沒特別感覺", "很喜歡", "超級喜歡"];
 
     function setProgress(step) {
-        const total = 6;
-        const percent = (step / total) * 100;
-        document.getElementById("progressBar").style.width = `${percent}%`;
-        document.getElementById("progressBar").textContent = `步驟 ${step} / ${total}`;
+      const percent = (step / totalSteps) * 100;
+      document.getElementById("progressBar").style.width = `${percent}%`;
+      document.getElementById("progressBar").textContent = `步驟 ${step} / ${totalSteps}`;
     }
 
-    function addItem() {
-        let newItem = document.getElementById("newItem").value.trim();
-        if (newItem && !items.includes(newItem)) {
-            items.push(newItem);
-            document.getElementById("newItem").value = "";
-            renderOptions();
-        }
+    function goToSafetyCheck() {
+      document.getElementById("page0").classList.add("d-none");
+      document.getElementById("page1").classList.remove("d-none");
+      setProgress(2);
     }
 
-    function renderOptions() {
-        let optionsDiv = document.getElementById("options");
-        optionsDiv.innerHTML = "";
-        items.forEach(item => {
-            let div = document.createElement("div");
-            div.className = "form-check";
-            let checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.className = "form-check-input";
-            checkbox.value = item;
-            checkbox.id = `chk_${item}`;
-            if (selectedItems.has(item)) checkbox.checked = true;
-            checkbox.onchange = function() {
-                if (this.checked) selectedItems.add(this.value);
-                else selectedItems.delete(this.value);
-            };
-            let label = document.createElement("label");
-            label.className = "form-check-label";
-            label.htmlFor = `chk_${item}`;
-            label.textContent = item;
-            div.appendChild(checkbox);
-            div.appendChild(label);
-            optionsDiv.appendChild(div);
-        });
+    function toggleSafetyConfirm(role) {
+      safetyConfirm[role] = !safetyConfirm[role];
+      document.getElementById(`btn${role.charAt(0).toUpperCase() + role.slice(1)}Confirmed`).classList.toggle("selected-button", safetyConfirm[role]);
+      document.getElementById("btnSafetyNext").disabled = !(safetyConfirm.active && safetyConfirm.passive);
+    }
+
+    function confirmSafetyCheck() {
+      document.getElementById("page1").classList.add("d-none");
+      document.getElementById("page2").classList.remove("d-none");
+      setProgress(3);
     }
 
     function confirmIntro() {
-        document.getElementById("pageIntro").classList.add("d-none");
-        document.getElementById("page1").classList.remove("d-none");
+      document.getElementById("page2").classList.add("d-none");
+      document.getElementById("page3").classList.remove("d-none");
+      renderOptions();
+      setProgress(4);
+    }
+
+    function addItem() {
+      let newItem = document.getElementById("newItem").value.trim();
+      if (newItem && !items.includes(newItem)) {
+        items.push(newItem);
+        document.getElementById("newItem").value = "";
         renderOptions();
-        setProgress(2);
+      }
+    }
+
+    function renderOptions() {
+      let optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      items.forEach(item => {
+        let div = document.createElement("div");
+        div.className = "form-check";
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "form-check-input";
+        checkbox.value = item;
+        checkbox.id = `chk_${item}`;
+        if (selectedItems.has(item)) checkbox.checked = true;
+        checkbox.onchange = function() {
+          if (this.checked) selectedItems.add(this.value);
+          else selectedItems.delete(this.value);
+        };
+        let label = document.createElement("label");
+        label.className = "form-check-label";
+        label.htmlFor = `chk_${item}`;
+        label.textContent = item;
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        optionsDiv.appendChild(div);
+      });
     }
 
     function confirmSelection() {
-        if (selectedItems.size === 0) {
-            alert("請選擇至少一項。");
-            return;
-        }
-        document.getElementById("page1").classList.add("d-none");
-        document.getElementById("activeLimits").classList.remove("d-none");
-        setProgress(3);
+      if (selectedItems.size === 0) {
+        alert("請選擇至少一項。");
+        return;
+      }
+      document.getElementById("page3").classList.add("d-none");
+      document.getElementById("page4").classList.remove("d-none");
+      setProgress(5);
     }
 
     function confirmActiveHardLimit() {
-        activeHardLimit = document.getElementById("activeHardLimit").value;
-        document.getElementById("activeLimits").classList.add("d-none");
-        document.getElementById("page2Intro").classList.remove("d-none");
-        setProgress(4);
+      activeHardLimit = document.getElementById("activeHardLimit").value;
+      document.getElementById("page4").classList.add("d-none");
+      document.getElementById("page5").classList.remove("d-none");
+      setProgress(6);
     }
 
     function confirmPage2Intro() {
-        document.getElementById("page2Intro").classList.add("d-none");
-        document.getElementById("page2").classList.remove("d-none");
-        renderAllowance();
-        setProgress(5);
+      document.getElementById("page5").classList.add("d-none");
+      document.getElementById("page6").classList.remove("d-none");
+      renderAllowance();
+      setProgress(7);
     }
 
     function renderAllowance() {
-        let allowanceDiv = document.getElementById("allowance");
-        allowanceDiv.innerHTML = "";
-        selectedItems.forEach(item => {
-            let container = document.createElement("div");
-            container.className = "slider-container";
-            let label = document.createElement("label");
-            label.textContent = item;
-            let slider = document.createElement("input");
-            slider.type = "range";
-            slider.min = 0;
-            slider.max = 5;
-            slider.step = 1;
-            slider.value = 3;
-            slider.dataset.item = item;
-            slider.className = "form-range";
-            slider.oninput = function() {
-                updateSliderValue(this);
-            };
-            let span = document.createElement("span");
-            span.textContent = descriptions[3];
-            container.appendChild(label);
-            container.appendChild(slider);
-            container.appendChild(span);
-            allowanceDiv.appendChild(container);
-        });
+      let allowanceDiv = document.getElementById("allowance");
+      allowanceDiv.innerHTML = "";
+      selectedItems.forEach(item => {
+        let container = document.createElement("div");
+        container.className = "slider-container";
+        let label = document.createElement("label");
+        label.textContent = item;
+        let slider = document.createElement("input");
+        slider.type = "range";
+        slider.min = 0;
+        slider.max = 5;
+        slider.step = 1;
+        slider.value = 3;
+        slider.dataset.item = item;
+        slider.className = "form-range";
+        slider.oninput = function() {
+          updateSliderValue(this);
+        };
+        let span = document.createElement("span");
+        span.textContent = descriptions[3];
+        span.classList.add('level-3');
+        container.appendChild(label);
+        container.appendChild(slider);
+        container.appendChild(span);
+        allowanceDiv.appendChild(container);
+      });
     }
 
     function updateSliderValue(slider) {
-        slider.nextElementSibling.textContent = descriptions[slider.value];
+      const span = slider.nextElementSibling;
+      const level = slider.value;
+      span.classList.remove("level-0", "level-1", "level-2", "level-3", "level-4", "level-5");
+      span.classList.add(`level-${level}`);
+      span.textContent = descriptions[level];
     }
-
     function confirmAllowance() {
-        document.querySelectorAll("#allowance input").forEach(input => {
-            allowanceLevels[input.dataset.item] = input.value;
-        });
-        document.getElementById("page2").classList.add("d-none");
-        document.getElementById("passiveLimits").classList.remove("d-none");
-        setProgress(6);
+      document.querySelectorAll("#allowance input").forEach(input => {
+        allowanceLevels[input.dataset.item] = input.value;
+      });
+      document.getElementById("page6").classList.add("d-none");
+      document.getElementById("page7").classList.remove("d-none");
+      setProgress(8);
     }
 
     function confirmPassiveHardLimit() {
-        passiveHardLimit = document.getElementById("passiveHardLimit").value;
-        document.getElementById("passiveLimits").classList.add("d-none");
-        document.getElementById("page3").classList.remove("d-none");
-        showFinalResult();
+      passiveHardLimit = document.getElementById("passiveHardLimit").value;
+      document.getElementById("page7").classList.add("d-none");
+      document.getElementById("page7_5").classList.remove("d-none");
+      renderExpectationOptions();
+      setProgress(9);
+    }
+
+    function addExpectationItem() {
+      let newItem = document.getElementById("newExpectationItem").value.trim();
+      if (newItem && !expectationItems.includes(newItem)) {
+        expectationItems.push(newItem);
+        document.getElementById("newExpectationItem").value = "";
+        renderExpectationOptions();
+      }
+    }
+
+    function renderExpectationOptions() {
+      let optionsDiv = document.getElementById("expectationOptions");
+      optionsDiv.innerHTML = "";
+      expectationItems.forEach(item => {
+        let div = document.createElement("div");
+        div.className = "form-check";
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "form-check-input";
+        checkbox.value = item;
+        checkbox.id = `chk_exp_${item}`;
+        if (selectedExpectations.has(item)) checkbox.checked = true;
+        checkbox.onchange = function() {
+          if (this.checked) {
+            selectedExpectations.add(this.value);
+          } else {
+            selectedExpectations.delete(this.value);
+          }
+          updateSelectedExpectations();
+        };
+        let label = document.createElement("label");
+        label.className = "form-check-label";
+        label.htmlFor = `chk_exp_${item}`;
+        label.textContent = item;
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        optionsDiv.appendChild(div);
+      });
+      updateSelectedExpectations();
+    }
+
+    function updateSelectedExpectations() {
+      let selectedDiv = document.getElementById("selectedExpectations");
+      if (selectedExpectations.size === 0) {
+        selectedDiv.innerHTML = "<em>尚未選擇任何項目</em>";
+      } else {
+        selectedDiv.innerHTML = Array.from(selectedExpectations).map(item => `• ${item}`).join("<br>");
+      }
+    }
+
+    function confirmPassiveExpectation() {
+      passiveExpectation = Array.from(selectedExpectations).join("、");
+      document.getElementById("page7_5").classList.add("d-none");
+      document.getElementById("page8").classList.remove("d-none");
+      showFinalResult();
     }
 
     function showFinalResult() {
-        let resultText = `主動方的硬底線：${activeHardLimit}\n\n被動方的硬底線：${passiveHardLimit}\n\n允許程度：\n`;
-        let rejectedItemsHtml = "";
-        let hasRejectedItems = false;
+      let rejectedItemsHtml = "";
+      let hasRejectedItems = false;
 
-        for (let item in allowanceLevels) {
-            if (allowanceLevels[item] == "0") {
-                rejectedItemsHtml += `<div class="rejected-item">${item} - 絕對禁止</div>`;
-                hasRejectedItems = true;
-            } else {
-                resultText += `${item}: ${allowanceLevels[item]} (${descriptions[allowanceLevels[item]]})\n`;
-            }
+      let categorizedItems = {
+        5: [], 4: [], 3: [], 2: [], 1: [], 0: []
+      };
+
+      for (let [item, level] of Object.entries(allowanceLevels)) {
+        categorizedItems[level].push(item);
+      }
+
+      let allowanceResultHtml = "";
+
+      for (let level = 5; level >= 1; level--) {
+        if (categorizedItems[level].length > 0) {
+          allowanceResultHtml += `
+            <div style="margin-top: 4px;">
+              <strong class="level-${level}">${descriptions[level]}：</strong><br>`;
+          categorizedItems[level].forEach(item => {
+            allowanceResultHtml += `<span class="level-${level}">• ${item}</span><br>`;
+          });
+          allowanceResultHtml += `</div>`;
         }
+      }
 
-        document.getElementById("finalResult").innerText = resultText;
+      if (categorizedItems[0].length > 0) {
+        categorizedItems[0].forEach(item => {
+          rejectedItemsHtml += `<div class="rejected-item">${item} - 絕對禁止</div>`;
+        });
+        hasRejectedItems = true;
+      }
 
-        if (hasRejectedItems) {
-            document.getElementById("rejectedTitle").classList.remove("d-none");
-            document.getElementById("rejectedItems").innerHTML = rejectedItemsHtml;
-        } else {
-            document.getElementById("rejectedTitle").classList.add("d-none");
-            document.getElementById("rejectedItems").innerHTML = "";
-        }
+      const noLimitText = "<em>（未輸入禁忌，請雙方務必確認）</em>";
+      const activeLimitDisplay = activeHardLimit.trim() === "" ? noLimitText : activeHardLimit;
+      const passiveLimitDisplay = passiveHardLimit.trim() === "" ? noLimitText : passiveHardLimit;
+
+      let expectationListHtml = "<em>（無資料）</em>";
+      if (selectedExpectations.size > 0) {
+        expectationListHtml = "<ul style='padding-left: 1.2rem; margin-bottom: 0;'>";
+        selectedExpectations.forEach(item => {
+          expectationListHtml += `<li>${item}</li>`;
+        });
+        expectationListHtml += "</ul>";
+      }
+
+      document.getElementById("finalResult").outerHTML = `
+        <div id="finalResult" class="text-white" style="font-family: 'Noto Sans TC', sans-serif; font-size: 1.05em; line-height: 1.5;">
+          <div class="rejected-item" style="margin-bottom: 6px;"><strong>主動方的硬底線：</strong> ${activeLimitDisplay}</div>
+          <div class="rejected-item" style="margin-bottom: 6px;"><strong>被動方的硬底線：</strong> ${passiveLimitDisplay}</div>
+          <div style="margin-top: 4px;"><strong>被動方期待主動方實踐項目：</strong><br>${expectationListHtml}</div>
+          <div style="margin-top: 4px;"><strong>允許程度分類：</strong></div>
+          ${allowanceResultHtml}
+        </div>
+      `;
+
+      if (hasRejectedItems) {
+        document.getElementById("rejectedTitle").classList.remove("d-none");
+        document.getElementById("rejectedItems").innerHTML = rejectedItemsHtml;
+      } else {
+        document.getElementById("rejectedTitle").classList.add("d-none");
+        document.getElementById("rejectedItems").innerHTML = "";
+      }
     }
-</script>
+  </script>
 </body>
 </html>
